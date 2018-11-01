@@ -1,0 +1,173 @@
+<html>
+
+<head>
+    <title>The Materialize Form Example</title>
+    <meta name="viewport" content="width = device-width, initial-scale = 1">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
+    <script type="text/javascript" src="/javascripts/bookride.js"></script>
+</head>
+
+<body class="container" style="font-size: large; border: 5px solid slategray; padding: 15px;">
+    <div class="title">
+        <h3 class="center-align grey-text" style="font-family:calibri"> Reschedule your ride.. </h3>
+
+    </div>
+
+    <form class="col s12" method="POST" action="update">
+        <div class="row">
+            <h4 class="center-align grey-text" style="font-family:calibri"> Your trip id is :
+                <!-- <%=  rideDetail[0].id %> -->
+            </h4>
+            <input id="id" type="hidden" name="id" value="<%= rideDetail[0].id %>" />
+        </div>
+
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="material-icons prefix">account_circle</i>
+                <input id="name" type="text" name="name" class="active validate" value="<%=  rideDetail[0].name %>"
+                    required />
+                <label for="name" style="color: black">Username</label>
+            </div>
+            <p id="nameerr"></p>
+        </div>
+
+        <div class="row">
+            <div class="input-field col s12">
+                <input id="email" type="email" name="email" value="<%=  rideDetail[0].email %>" class="validate"
+                    required>
+                <label for="email" style="color: black">Email</label>
+            </div>
+            <p id="emailerr"></p>
+        </div>
+
+        <div class="row">
+            <div class="input-field col s12">
+                <input id="cno" type="text" name="cno" value="<%= rideDetail[0].cno %>" class="validate" required>
+                <label for="cno" style="color: black">Contact Number</label>
+            </div>
+            <p id="cnoerr"></p>
+        </div>
+
+        <div class="row">
+            <div class="input-field col s12">
+                <label class="label" style="color: black">WHICH TAXI DO YOU REQUIRE ?</label>
+                <p>
+                    <input id="car" type="radio" name="cartype" value="car" <% if ( rideDetail[0].cartype == 'car' ){ %>
+                    checked
+                    <% } %> />
+                    <label for="car">Car</label>
+                </p>
+
+                <p>
+                    <input id="van" type="radio" name="cartype" value="van" <% if (rideDetail[0].cartype == 'van' ) { %>
+                    Checked
+                    <% } %> />
+
+                    <label for="van">Van</label>
+                </p>
+
+                <p>
+                    <input id="tuktuk" type="radio" name="cartype" value="tuktuk" <% if (rideDetail[0].cartype == 'tuktuk' )
+                        { %>
+                    Checked
+                    <% } %> />
+                    <label for="tuktuk">Tuk Tuk</label>
+                </p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field col s12">
+                <label class="label" style="color: black">EXTRAS</label>
+                <p>
+                    <input id="babyseat" name="babyseat" type="checkbox" <% if (rideDetail[0].extra.babyseat) { %>
+                    checked
+                    <% } %> />
+                    <label for="babyseat">Babyseat</label>
+                </p>
+
+                <p>
+                    <input id="wheelchair" name="wheelchair" type="checkbox" <% if (rideDetail[0].extra.wheelchair) { %>
+                    checked
+                    <% } %> />
+                    <label for="wheelchair">Wheelchair Access</label>
+                </p>
+
+                <p>
+                    <input id="stock" name="stocktip" type="checkbox" <% if (rideDetail[0].extra.stocktip) { %> checked
+                    <% } %> />
+                    <label for="stock">Stock Tip</label>
+                </p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field col s12">
+                <select name="select">
+                    <optgroup label="team 1">
+                        <option value="1">Option 1</option>
+                        <option value="2">Option 2</option>
+                    </optgroup>
+                    <optgroup label="team 2">
+                        <option value="3">Option 3</option>
+                        <option value="4">Option 4</option>
+                    </optgroup>
+                </select>
+                <label style="color: black">SELECT ANY ONE</label>
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field col s12">
+                <label class="label" style="color: black">Pickup Date</label>
+                <input type="text" id="date" name="date" class="datepicker" value="<%= rideDetail[0].date %>">
+            </div>
+            <p id="dateerr"></p>
+        </div>
+        <!-- 
+        <div class="row">
+            <div class="input-field col s12">
+                <label class="label" style="color: black">Pickup Time</label>
+                <input class="timepicker" >
+            </div>
+        </div> -->
+
+        <div class="row">
+            <div class="input-field col s12">
+                <input id="pickup" name="pickup" type="text" class="validate" value="<%= rideDetail[0].pickup %>"
+                    required />
+                <label for="pickup" style="color: black">Pickup Place</label>
+            </div>
+            <p id="pickuperr"></p>
+        </div>
+
+        <div class="row">
+            <div class="input-field col s12">
+                <input id="dropoff" name="dropoff" type="text" class="validate" value="<%= rideDetail[0].dropoff %>"
+                    required />
+                <label for="dropoff" style="color: black">Dropoff Place</label>
+            </div>
+            <p id="dropofferr"></p>
+        </div>
+
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="material-icons prefix">mode_edit</i>
+                <textarea id="instruction" name="instruction" class="materialize-textarea"><%= rideDetail[0].instruction %></textarea>
+                <label for="instruction">Special Instructions</label>
+            </div>
+        </div>
+
+        <button class="btn waves-effect waves-light" type="submit" name="action" id="button">Submit
+            <i class="material-icons right">send</i>
+        </button>
+    </form>
+
+</body>
+
+</html>

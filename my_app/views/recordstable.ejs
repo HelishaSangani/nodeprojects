@@ -1,0 +1,66 @@
+<table class="striped" id="allrecords">
+
+<thead>
+    <tr>
+        <th> Ride Id :</th>
+        <th>User Name</th>
+        <th>Email-ID</th>
+        <th>Contact Number</th>
+        <th>Car Type </th>
+        <th>Extra Facilities </th>
+        <th>Pickup Date</th>
+        <th>Pickup Place</th>
+        <th>dropoff Place</th>
+        <th>Special Instuctions </th>
+
+    </tr>
+</thead>
+
+<tbody>
+    <% for(var x=0; x < rides.length; x++) { %>
+    <tr>
+        <td>
+            <%=  rides[x].id %>
+        </td>
+        <td>
+            <%=  rides[x].name %>
+        </td>
+        <td>
+            <%= rides[x].email %>
+        </td>
+        <td>
+            <%= rides[x].cno %>
+        </td>
+        <td>
+            <%= rides[x].cartype %>
+        </td>
+        <td>
+            <%if (rides[x].extra.babyseat) { %>
+            Babyseat,
+            <% } %>
+            <%if (rides[x].extra.wheelchair) { %>
+            Wheel Chair,
+            <% } %>
+            <%if (rides[x].extra.stocktip) { %>
+            Stock Tip
+            <% } %>
+        </td>
+
+        <td>
+            <%= rides[x].date %>
+        </td>
+
+        <td>
+            <%= rides[x].pickup %>
+        </td>
+        <td>
+            <%= rides[x].dropoff %>
+        </td>
+        <td>
+            <%= rides[x].instruction %>
+        </td>
+    </tr>
+
+    <% } %>
+</tbody>
+</table>

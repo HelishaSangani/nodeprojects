@@ -1,0 +1,34 @@
+<html>
+
+<head>
+    <title>The Materialize Form Example</title>
+    <meta name="viewport" content="width = device-width, initial-scale = 1">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
+    <script type="text/javascript" src="/javascripts/bookride.js"></script>
+</head>
+
+<body class="container" style="font-size: large; border: 5px solid slategray; padding: 15px;">
+
+    <div class="title">
+        <h3 class="center-align grey-text" style="font-family:calibri"> Edit your ride! </h3>
+    </div>
+
+    <form action="/rides/fetchride"  method="POST">
+        <div class="row">
+            <div class="input-field col s12">
+                <input id="email" type="email" name="email" class="validate" required>
+                <label for="email" style="color: black">Enter your Email : </label>
+            </div>
+            <p id="emailerr"></p>
+        </div>
+        <button class="btn waves-effect waves-light" type="submit" name="action" id="button">Submit
+                <i class="material-icons right">send</i>
+            </button>
+    </form>
+</body>
+
+</html>

@@ -1,0 +1,119 @@
+<html>
+
+<head>
+    <title>The Materialize Form Example</title>
+    <meta name="viewport" content="width = device-width, initial-scale = 1">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
+    <script type="text/javascript" src="/javascripts/bookride.js"></script>
+    <!-- <script type="text/javascript" src="/javascripts/ajaxdelete.js"></script> -->
+
+    <style>
+        table{
+            width: 100%;
+        }
+    th, td {
+    border: 1px solid black;
+    }
+    </style>
+</head>
+<!-- class="container" style="font-size: large; border: 5px solid slategray; padding: 15px; -->
+
+<body>
+    <div class="title">
+        <h3 class="center-align grey-text" style="font-family:calibri"> Your rides! </h3>
+    </div>
+    <div id="table">
+        <table class="striped">
+            <thead>
+                <tr>
+                    <th> Ride Id :</th>
+                    <th>User Name</th>
+                    <th>Email-ID</th>
+                    <th>Contact Number</th>
+                    <th>Car Type </th>
+                    <th>Extra Facilities </th>
+                    <th>Pickup Date</th>
+                    <th>Pickup Place</th>
+                    <th>dropoff Place</th>
+                    <th>Special Instuctions </th>
+                    <th>Update Or Delete your ride</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <% for(var x=0; x < rides.length; x++) { %>
+                <tr>
+                    <td>
+                        <%=  rides[x].id %>
+                    </td>
+                    <td>
+                        <%=  rides[x].name %>
+                    </td>
+                    <td>
+                        <%= rides[x].email %>
+                    </td>
+                    <td>
+                        <%= rides[x].cno %>
+                    </td>
+                    <td>
+                        <%= rides[x].cartype %>
+                    </td>
+                    <td>
+                        <%if (rides[x].extra.babyseat) { %>
+                        Babyseat,
+                        <% } %>
+                        <%if (rides[x].extra.wheelchair) { %>
+                        Wheel Chair,
+                        <% } %>
+                        <%if (rides[x].extra.stocktip) { %>
+                        Stock Tip
+                        <% } %>
+                    </td>
+
+                    <td>
+                        <%= rides[x].date %>
+                    </td>
+
+                    <td>
+                        <%= rides[x].pickup %>
+                    </td>
+                    <td>
+                        <%= rides[x].dropoff %>
+                    </td>
+                    <td>
+                        <%= rides[x].instruction %>
+                    </td>
+                    <td>
+                        <form action="/rides/selectride" method="POST">
+                            <div>
+                                <input id="i<%= x %>" type="hidden" name="id" value="<%= rides[x].id %>">
+                            </div>
+                        
+                            <div>
+                                <input id="e<%= x %>" type="hidden" name="email" value="<%= rides[x].email %>">
+                            </div>
+                        
+                            <button class="btn waves-effect waves-light" style="margin-bottom: 5px" type="submit" name="action"
+                                id="button">Update
+                                <i class="material-icons right">send</i>
+                            </button>
+                        </form>
+                        <button class="btn waves-effect waves-light delete" style="margin-top: 5px" type="submit" id="<%= x %>" name="delete">Delete
+                            <i class="material-icons right">send</i>
+                        </button>
+
+                    </td>
+                </tr>
+
+                <% } %>
+            </tbody>
+        </table>
+        <script type="text/javascript" src="/javascripts/ajaxdelete.js"></script>
+    </div>
+</body>
+
+</html>

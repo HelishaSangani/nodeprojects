@@ -1,0 +1,123 @@
+<html>
+
+<head>
+    <title></title>
+    <meta name="viewport" content="width = device-width, initial-scale = 1">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
+    <script type="text/javascript" src="/javascripts/bookride.js"></script>
+    <script type="text/javascript" src="/javascripts/ajax.js"></script>
+    <style>
+        table {
+            width: 100%;
+        }
+        th,
+        td {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<!-- class="container" style="font-size: large; border: 5px solid slategray; padding: 15px; -->
+
+<body>
+    <div class="title">
+        <h3 class="center-align grey-text" style="font-family:calibri"> Your rides! </h3>
+    </div>
+    <!-- <form action="/rides/allride" method="POST"> -->
+    <form>
+        <div class="row">
+            <div class="input-field col s1">
+                <label style="color: black"><b> Search : </b> </label>
+            </div>
+            <div class="input-field col s4">
+                <input id="search" type="TEXT" name="search">
+            </div>
+
+            <div class="input-field col s4">
+                <label class="label" style="color: black">Pickup Date</label>
+                <input type="text" id="date" name="date" class="datepicker">
+            </div>
+
+            <div class="input-field col s1">
+                <button class="btn waves-effect waves-light" id="button" type="submit">Search
+                </button>
+            </div>
+            <div class="input-field col s1"></div>
+            <div class="input-field col s1"> <a href="/" class="btn waves-effect waves-light">Home</a></div>
+        </div>
+    </form>
+    <div id="table">
+        <table class="striped">
+
+            <thead>
+                <tr>
+                    <th> Ride Id :</th>
+                    <th>User Name</th>
+                    <th>Email-ID</th>
+                    <th>Contact Number</th>
+                    <th>Car Type </th>
+                    <th>Extra Facilities </th>
+                    <th>Pickup Date</th>
+                    <th>Pickup Place</th>
+                    <th>dropoff Place</th>
+                    <th>Special Instuctions </th>
+
+                </tr>
+            </thead>
+
+            <tbody>
+                <% for(var x=0; x < rides.length; x++) { %>
+                <tr>
+                    <td>
+                        <%=  rides[x].id %>
+                    </td>
+                    <td>
+                        <%=  rides[x].name %>
+                    </td>
+                    <td>
+                        <%= rides[x].email %>
+                    </td>
+                    <td>
+                        <%= rides[x].cno %>
+                    </td>
+                    <td>
+                        <%= rides[x].cartype %>
+                    </td>
+                    <td>
+                        <%if (rides[x].extra.babyseat) { %>
+                        Babyseat,
+                        <% } %>
+                        <%if (rides[x].extra.wheelchair) { %>
+                        Wheel Chair,
+                        <% } %>
+                        <%if (rides[x].extra.stocktip) { %>
+                        Stock Tip
+                        <% } %>
+                    </td>
+
+                    <td>
+                        <%= rides[x].date %>
+                    </td>
+
+                    <td>
+                        <%= rides[x].pickup %>
+                    </td>
+                    <td>
+                        <%= rides[x].dropoff %>
+                    </td>
+                    <td>
+                        <%= rides[x].instruction %>
+                    </td>
+                </tr>
+
+                <% } %>
+            </tbody>
+        </table>
+
+    </div>
+</body>
+
+</html>
